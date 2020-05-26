@@ -1,8 +1,11 @@
 const router = require('express').Router();
-// @Route /api/auth
+const auth=require('../../middleware/auth')
 
-const {} = require('../../controller/auth');
 
-router.get('/', (req, res) => res.send('Auth Route'));
+const {
+    getAuthUser
+} = require('../../controller/auth');
+
+router.get('/',auth ,getAuthUser);
 
 module.exports = router;
