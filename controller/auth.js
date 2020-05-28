@@ -9,7 +9,6 @@ module.exports = {
 	getUser: async (req, res) => {
 		try {
 			let user = await User.findById(req.user.id).select('-password');
-			await user.save();
 			res.status(200).json(user);
 		} catch (error) {
 			console.error(error.message);
@@ -27,20 +26,23 @@ module.exports = {
 				return res.status(400).json({ errors: errors.array() });
 			}
             
-			let user = User.findOne({ email });
+			let user =await User.findOne({ email });
             
             if (!user) {
 				return res.status(400).json({ errors: [{ msg: 'Invalid Credentials' }] });
 			}
 
-            // password validation
-			const isMatch = await jwt.compare(password, user.password);
+			// password validation
+			
+			const isMatch = await bcrypt.compare(password, user.password);
             if (!isMatch) {
 				return res.status(404).json({ errors: [{ msg: 'Invalid Credentials' }] });
             }
             
             const payload={
-                user:user.id
+                user:{
+					id:user.id
+				}
             }
 
             jwt.sign(payload,JWT_TOKEN,(error,token)=>{

@@ -10,9 +10,9 @@ connectDB();
 app.use(express.json({extended:false}));
 
 // Define Routes
-app.use('/api/profile', require('./routes/api/profile'));
-app.use('/api/posts', require('./routes/api/posts'));
-app.use('/api/auth', require('./routes/api/auth'));
+app.use('/api/profile', require('./routes/profile'));
+app.use('/api/posts', require('./routes/posts'));
+app.use('/api/auth', require('./routes/auth'));
 
 const PORT = process.env.PORT || 5000;
 app.listen(PORT, () => console.log(`Server started on port ${PORT}`));
