@@ -19,6 +19,6 @@ const { getUser, signUp, login } = require('../controller/auth');
 
 router.post('/signup', signUpValidator, signUp);
 router.post('/login', logInValidator, login);
-router.get('/', auth, getUser);
+router.get('/loaduser', auth, getUser);
 
 module.exports = router;
