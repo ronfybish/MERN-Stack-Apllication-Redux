@@ -34,12 +34,9 @@ export const createProfile = (
 			payload: res.data,
 		});
 
-		dispatch(
-			setAlert( 'Profile Updated' , 'success')
-		);
+		dispatch(setAlert('Profile Updated', 'success'));
 
-		
-			history.push('/dashboard');
+		history.push('/dashboard');
 	} catch (err) {
 		const errors = err.response.data.errors;
 
