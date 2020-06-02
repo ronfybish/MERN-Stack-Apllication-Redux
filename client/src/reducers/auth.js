@@ -2,17 +2,17 @@ import {
 	REGISTER_SUCCESS,
 	REGISTER_FAIL,
 	AUTH_ERROR,
-    USER_LOADED,
-    LOGIN_FAIL,
-    LOGIN_SUCCESS,
-    LOGOUT
+	USER_LOADED,
+	LOGIN_FAIL,
+	LOGIN_SUCCESS,
+	LOGOUT,
 } from '../actions/types';
 
 const initialState = {
 	token: localStorage.getItem('token'),
 	isAuthenticated: null,
 	loading: true,
-    user: null,
+	user: null,
 };
 export default function (state = initialState, action) {
 	const { payload, type } = action;

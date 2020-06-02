@@ -22,7 +22,6 @@ export default function (state = initialState, action) {
 				...state,
 				error: payload,
 				loading: true,
-				profile:null
 			};
 		default:
 			return state;

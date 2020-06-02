@@ -3,10 +3,10 @@ import { getCurrentProfile } from '../../actions/profile';
 import { connect } from 'react-redux';
 
 const Dashboard = ({ profile, auth, getCurrentProfile }) => {
-	useEffect(()=>{
-	    getCurrentProfile()
-	    // eslint-disable-next-line
-	},[])
+	useEffect(() => {
+		getCurrentProfile();
+		// eslint-disable-next-line
+	}, []);
 
 	return (
 		<div>

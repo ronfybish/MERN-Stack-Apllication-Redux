@@ -3,19 +3,18 @@ import { BrowserRouter as Router, Route, Switch } from 'react-router-dom';
 import Navbar from './component/layout/Navbar';
 import Landing from './component/layout/Landing';
 import Alert from './component/layout/Alert';
-import Dashboard from './component/dashboard/Dashboard'
+import Dashboard from './component/dashboard/Dashboard';
 import Login from './component/auth/Login';
 import Register from './component/auth/Register';
 import setAuthToken from './utils/setAuthToken';
-import PrivateRoute from './utils/PrivateRoute'
+import PrivateRoute from './utils/PrivateRoute';
 import { Provider } from 'react-redux';
 import { loadUser } from './actions/auth';
-import NotFound from './component/layout/NotFound'
+import NotFound from './component/layout/NotFound';
 import store from './store';
 import './App.css';
 
-
-if(localStorage.token){
+if (localStorage.token) {
 	setAuthToken(localStorage.token);
 }
 
@@ -39,7 +38,11 @@ const App = () => {
 								component={Register}
 							/>
 							<Route exact path='/login' component={Login} />
-							<PrivateRoute exact path='/dashboard' component={Dashboard} />
+							<PrivateRoute
+								exact
+								path='/dashboard'
+								component={Dashboard}
+							/>
 							<Route component={NotFound} />
 						</Switch>
 					</section>

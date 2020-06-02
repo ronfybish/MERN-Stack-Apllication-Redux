@@ -31,8 +31,8 @@ const {
 	addProfileExperience,
 	deleteProfileExperience,
 	addProfileEducation,
-    deleteProfileEducation,
-    getUserRepos
+	deleteProfileEducation,
+	getUserRepos,
 } = require('../controller/profile');
 
 router.get('/me', auth, getProfile);

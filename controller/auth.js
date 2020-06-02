@@ -25,34 +25,39 @@ module.exports = {
 			if (!errors.isEmpty()) {
 				return res.status(400).json({ errors: errors.array() });
 			}
-            
-			let user =await User.findOne({ email });
-            
-            if (!user) {
-				return res.status(400).json({ errors: [{ msg: 'Invalid Credentials' }] });
+
+			let user = await User.findOne({ email });
+
+			if (!user) {
+				return res
+					.status(400)
+					.json({ errors: [{ msg: 'Invalid Credentials' }] });
 			}
 
 			// password validation
-			
+
 			const isMatch = await bcrypt.compare(password, user.password);
-            if (!isMatch) {
-				return res.status(404).json({ errors: [{ msg: 'Invalid Credentials' }] });
-            }
-            
-            const payload={
-                user:{
-					id:user.id
-				}
-            }
+			if (!isMatch) {
+				return res
+					.status(404)
+					.json({ errors: [{ msg: 'Invalid Credentials' }] });
+			}
 
-            jwt.sign(payload,JWT_TOKEN,(error,token)=>{
-                if(error)throw error
-                res.status(200).json({token})
-            })
+			const payload = {
+				user: {
+					id: user.id,
+				},
+			};
 
+			jwt.sign(payload, JWT_TOKEN, (error, token) => {
+				if (error) throw error;
+				res.status(200).json({ token });
+			});
 		} catch (error) {
 			console.error(error.message);
-			res.status(500).json({errors: [{ msg: 'Error Server **Login**' }]});
+			res.status(500).json({
+				errors: [{ msg: 'Error Server **Login**' }],
+			});
 		}
 	},
 
@@ -101,8 +106,7 @@ module.exports = {
 			jwt.sign(payload, JWT_TOKEN, (error, token) => {
 				if (error) throw error;
 				res.status(200).json({ token });
-            });
-            
+			});
 		} catch (error) {
 			console.error(error.message);
 			res.status(500).json({
