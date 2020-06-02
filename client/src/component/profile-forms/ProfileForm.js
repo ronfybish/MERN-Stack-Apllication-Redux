@@ -1,22 +1,46 @@
 import React, { Fragment, useState, useEffect } from 'react';
 import { Link } from 'react-router-dom';
 import { connect } from 'react-redux';
+import { createProfile, getCurrentProfile } from '../../actions/profile';
 
-const CreateProfile = () => {
-	const [formData, setFormData] = useState({
-		company: '',
-		website: '',
-		location: '',
-		status: '',
-		skills: '',
-		githubusername: '',
-		bio: '',
-		twitter: '',
-		facebook: '',
-		linkedin: '',
-		youtube: '',
-		instagram: '',
-	});
+const initialState = {
+	company: '',
+	website: '',
+	location: '',
+	status: '',
+	skills: '',
+	githubusername: '',
+	bio: '',
+	twitter: '',
+	facebook: '',
+	linkedin: '',
+	youtube: '',
+	instagram: '',
+};
+
+const ProfileForm = ({
+	profile: { profile, loading },
+	createProfile,
+	getCurrentProfile,
+	history,
+}) => {
+	const [formData, setFormData] = useState(initialState);
+
+	useEffect(() => {
+		if (!profile) getCurrentProfile();
+		if (!loading && profile) {
+			const profileData = { ...initialState };
+			for (const key in profile) {
+				if (key in profileData) profileData[key] = profile[key];
+			}
+			for (const key in profile.social) {
+				if (key in profileData) profileData[key] = profile.social[key];
+			}
+			if (Array.isArray(profileData.skills))
+				profileData.skills = profileData.skills.join(', ');
+			setFormData(profileData);
+		}
+	}, [loading, getCurrentProfile, profile]);
 
 	const {
 		company,
@@ -32,8 +56,15 @@ const CreateProfile = () => {
 		youtube,
 		instagram,
 	} = formData;
-    const onChange = e =>
-    setFormData({ ...formData, [e.target.name]: e.target.value });
+
+	const onChange = e =>
+		setFormData({ ...formData, [e.target.name]: e.target.value });
+
+	const onSubmit = e => {
+		e.preventDefault();
+		createProfile(formData, history);
+	};
+
 	return (
 		<Fragment>
 			<h1 className='large text-primary'>Edit Your Profile</h1>
@@ -41,7 +72,7 @@ const CreateProfile = () => {
 				<i className='fas fa-user' /> Add some changes to your profile
 			</p>
 			<small>* = required field</small>
-			<form className='form' >
+			<form className='form' onSubmit={onSubmit}>
 				<div className='form-group'>
 					<select name='status' value={status} onChange={onChange}>
 						<option>* Select Professional Status</option>
@@ -206,4 +237,10 @@ const CreateProfile = () => {
 	);
 };
 
-export default CreateProfile;
+const mapStateToProps = state => ({
+	profile: state.profile,
+});
+
+export default connect(mapStateToProps, { createProfile, getCurrentProfile })(
+	ProfileForm
+);

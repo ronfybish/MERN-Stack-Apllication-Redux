@@ -8,7 +8,7 @@ import Login from './component/auth/Login';
 import Register from './component/auth/Register';
 import setAuthToken from './utils/setAuthToken';
 import PrivateRoute from './utils/PrivateRoute';
-import CreateProfile from './component/profile-forms/CreateProfile'
+import ProfileForm from './component/profile-forms/ProfileForm';
 import { Provider } from 'react-redux';
 import { loadUser } from './actions/auth';
 import NotFound from './component/layout/NotFound';
@@ -22,7 +22,7 @@ const App = () => {
 	useEffect(() => {
 		store.dispatch(loadUser());
 	}, []);
-	
+
 	return (
 		<Provider store={store}>
 			<Router>
@@ -45,8 +45,8 @@ const App = () => {
 							/>
 							<PrivateRoute
 								exact
-								path='/create-profile'
-								component={CreateProfile}
+								path='/edit-profile'
+								component={ProfileForm}
 							/>
 							<Route component={NotFound} />
 						</Switch>
