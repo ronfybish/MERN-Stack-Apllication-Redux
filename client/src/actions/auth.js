@@ -10,7 +10,7 @@ import {
 	LOGIN_FAIL,
 	LOGIN_SUCCESS,
 	LOGOUT,
-} from '../actions/types';
+} from './types';
 
 export const register = ({ name, email, password }) => async dispatch => {
 	const config = {
@@ -38,7 +38,9 @@ export const register = ({ name, email, password }) => async dispatch => {
 };
 
 export const loadUser = () => async dispatch => {
-	if (localStorage.token) setAuthToken(localStorage.token);
+	if (localStorage.token){
+		setAuthToken(localStorage.token);
+	} 
 	try {
 		const res = await axios.get('/api/auth/loaduser');
 		dispatch({
