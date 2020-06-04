@@ -26,9 +26,7 @@ const Dashboard = ({
 				<Fragment>
 					<DashboardActions />
 					<div className='my-2'>
-						<button
-							className='btn btn-danger'
-						>
+						<button className='btn btn-danger'>
 							<i className='fas fa-user-minus' /> Delete My
 							Account
 						</button>

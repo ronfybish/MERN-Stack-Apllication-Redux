@@ -9,6 +9,8 @@ import Register from './component/auth/Register';
 import setAuthToken from './utils/setAuthToken';
 import PrivateRoute from './utils/PrivateRoute';
 import ProfileForm from './component/profile-forms/ProfileForm';
+import AddEducation from './component/profile-forms/AddEducation';
+import AddExperience from './component/profile-forms/AddExperience';
 import { Provider } from 'react-redux';
 import { loadUser } from './actions/auth';
 import NotFound from './component/layout/NotFound';
@@ -47,6 +49,16 @@ const App = () => {
 								exact
 								path='/edit-profile'
 								component={ProfileForm}
+							/>
+							<PrivateRoute
+								exact
+								path='/add-education'
+								component={AddEducation}
+							/>
+							<PrivateRoute
+								exact
+								path='/add-experience'
+								component={AddExperience}
 							/>
 							<Route component={NotFound} />
 						</Switch>

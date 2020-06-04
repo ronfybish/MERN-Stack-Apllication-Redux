@@ -23,7 +23,7 @@ const educationValidator = [
 ];
 
 const {
-	getProfile,
+	getCurrentProfile,
 	createOrUpdateProfile,
 	getAllProfiles,
 	getProfileByUserId,
@@ -35,7 +35,7 @@ const {
 	getUserRepos,
 } = require('../controller/profile');
 
-router.get('/me', auth, getProfile);
+router.get('/me', auth, getCurrentProfile);
 router.get('/', getAllProfiles);
 router.get('/user/:user_id', getProfileByUserId);
 router.get('/github/:username', getUserRepos);

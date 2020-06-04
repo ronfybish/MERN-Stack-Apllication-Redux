@@ -6,14 +6,14 @@ const bcrypt = require('bcrypt');
 const gravatar = require('gravatar');
 
 module.exports = {
-	getUser: async (req, res) => {
+	loadUser: async (req, res) => {
 		try {
 			let user = await User.findById(req.user.id).select('-password');
 			res.status(200).json(user);
 		} catch (error) {
 			console.error(error.message);
 			res.status(500).json({
-				errors: [{ msg: 'Server Error **getUser**' }],
+				errors: [{ msg: 'Server Error **loadUser**' }],
 			});
 		}
 	},

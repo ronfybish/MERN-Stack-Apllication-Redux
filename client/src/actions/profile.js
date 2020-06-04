@@ -1,7 +1,7 @@
 import axios from 'axios';
 import { setAlert } from './alert';
 
-import { GET_PROFILE, PROFILE_ERROR, CREATE_OR_UPDATE_PROFILE } from './types';
+import { GET_PROFILE, PROFILE_ERROR, UPDATE_PROFILE } from './types';
 
 export const getCurrentProfile = () => async dispatch => {
 	try {
@@ -21,7 +21,7 @@ export const getCurrentProfile = () => async dispatch => {
 	}
 };
 
-export const createProfile = (
+export const createOrUpdateProfile = (
 	formData,
 	history,
 	edit = false
@@ -30,7 +30,7 @@ export const createProfile = (
 		const res = await axios.post('/api/profile', formData);
 
 		dispatch({
-			type: CREATE_OR_UPDATE_PROFILE,
+			type: UPDATE_PROFILE,
 			payload: res.data,
 		});
 

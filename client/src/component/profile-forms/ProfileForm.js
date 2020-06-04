@@ -1,7 +1,7 @@
 import React, { Fragment, useState, useEffect } from 'react';
 import { Link } from 'react-router-dom';
 import { connect } from 'react-redux';
-import { createProfile, getCurrentProfile } from '../../actions/profile';
+import { createOrUpdateProfile, getCurrentProfile } from '../../actions/profile';
 
 const initialState = {
 	company: '',
@@ -20,7 +20,7 @@ const initialState = {
 
 const ProfileForm = ({
 	profile: { profile, loading },
-	createProfile,
+	createOrUpdateProfile,
 	getCurrentProfile,
 	history,
 }) => {
@@ -62,7 +62,7 @@ const ProfileForm = ({
 
 	const onSubmit = e => {
 		e.preventDefault();
-		createProfile(formData, history);
+		createOrUpdateProfile(formData, history);
 	};
 
 	return (
@@ -241,6 +241,6 @@ const mapStateToProps = state => ({
 	profile: state.profile,
 });
 
-export default connect(mapStateToProps, { createProfile, getCurrentProfile })(
+export default connect(mapStateToProps, { createOrUpdateProfile, getCurrentProfile })(
 	ProfileForm
 );

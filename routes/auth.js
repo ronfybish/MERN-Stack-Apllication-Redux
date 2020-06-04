@@ -15,10 +15,10 @@ const logInValidator = [
 	check('password', 'Password is required').exists(),
 ];
 
-const { getUser, signUp, login } = require('../controller/auth');
+const { loadUser, signUp, login } = require('../controller/auth');
 
 router.post('/signup', signUpValidator, signUp);
 router.post('/login', logInValidator, login);
-router.get('/loaduser', auth, getUser);
+router.get('/loaduser', auth, loadUser);
 
 module.exports = router;

@@ -7,7 +7,7 @@ const axios = require('axios');
 const { validationResult } = require('express-validator');
 
 module.exports = {
-	getProfile: async (req, res) => {
+	getCurrentProfile: async (req, res) => {
 		try {
 			const profile = await Profile.findOne({
 				user: req.user.id,
