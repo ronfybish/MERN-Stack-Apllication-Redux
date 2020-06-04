@@ -1,5 +1,6 @@
 const Profile = require('../models/Profile');
 const User = require('../models/User');
+const Post = require('../models/Post');
 const normalize = require('normalize-url');
 const GITHUB_CLIENT_ID = require('config').get('GITHUB_CLIENT_ID');
 const GITHUB_CLIENT_SECRET = require('config').get('GITHUB_CLIENT_SECRET');
@@ -97,7 +98,7 @@ module.exports = {
 	deleteProfile: async (req, res) => {
 		try {
 			// Remove user posts
-
+			await Post.deleteMany({ user: req.user.id });
 			// Remove profile
 			await Profile.findOneAndRemove({ user: req.user.id });
 			// Remove user

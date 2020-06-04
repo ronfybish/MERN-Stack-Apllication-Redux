@@ -27,12 +27,10 @@ const AddExperience = ({ addExperience, history }) => {
 
 	const onChange = e =>
 		setFormData({ ...formData, [e.target.name]: e.target.value });
-
 	const onSubmit = e => {
 		e.preventDefault();
 		addExperience(formData, history);
-  };
-  
+	};
 	return (
 		<Fragment>
 			<h1 className='large text-primary'>Add An Experience</h1>
@@ -41,7 +39,7 @@ const AddExperience = ({ addExperience, history }) => {
 				developer/programming positions that you have had in the past
 			</p>
 			<small>* = required field</small>
-			<form className='form' onSubmit={onSubmit}>
+			<form className='form' onSubmit={e => {onSubmit(e)}}>
 				<div className='form-group'>
 					<input
 						type='text'
@@ -121,6 +119,10 @@ const AddExperience = ({ addExperience, history }) => {
 			</form>
 		</Fragment>
 	);
+};
+
+AddExperience.propTypes = {
+	addExperience: PropTypes.func.isRequired,
 };
 
 export default connect(null, { addExperience })(AddExperience);
