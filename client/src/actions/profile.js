@@ -185,5 +185,4 @@ export const deleteAccount = () => async dispatch => {
 			});
 		}
 	}
-	
 };
