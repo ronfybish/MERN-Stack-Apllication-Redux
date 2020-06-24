@@ -10,6 +10,7 @@ import setAuthToken from './utils/setAuthToken';
 import PrivateRoute from './utils/PrivateRoute';
 import ProfileForm from './component/profile-forms/ProfileForm';
 import Profiles from './component/profiles/Profiles';
+import Profile from './component/profile/Profile'
 import AddEducation from './component/profile-forms/AddEducation';
 import AddExperience from './component/profile-forms/AddExperience';
 import { Provider } from 'react-redux';
@@ -41,6 +42,7 @@ const App = () => {
 								component={Register}
 							/>
 							<Route exact path='/login' component={Login} />
+							<Route exact path='/profile/:id' component={Profile} />
 							<Route
 								exact
 								path='/profiles'
