@@ -4,12 +4,36 @@ import { connect } from 'react-redux';
 import Spinner from '../layout/Spinner';
 import { getProfileById } from '../../actions/profile';
 
-const Profile = ({ getProfileById, profile: { profile }, auth, match }) => {
+const Profile = ({
+	getProfileById,
+	profile: { profile },
+	auth: { isAuthenticated, loading, user },
+	match,
+}) => {
 	useEffect(() => {
 		getProfileById(match.params.id);
 	}, [getProfileById, match.params.id]);
 
-	return <h1>PROFILE</h1>;
+	return (
+		<Fragment>
+			{profile == null ? (
+				<Spinner />
+			) : (
+				<Fragment>
+					<Link to='/profiles' className='btn btn-light'>
+						Back To Profiles
+					</Link>
+					{isAuthenticated &&
+						loading === false &&
+						user._id === profile.user._id && (
+							<Link to='/edit-profile' className='btn btn-dark'>
+								Edit Profile
+							</Link>
+						)}
+				</Fragment>
+			)}
+		</Fragment>
+	);
 };
 
 const mapStateToProps = state => ({
