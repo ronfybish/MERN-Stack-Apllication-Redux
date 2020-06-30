@@ -4,6 +4,8 @@ const dotenv=require('dotenv').config()
 
 const connectDB = async () => {
 	try {
+		console.log(process.env.MONGO_DB_URI);
+		console.log(typeof process.env.MONGO_DB_URI);
 		await mongoose.connect(process.env.MONGO_DB_URI, {
 			useNewUrlParser: true,
 			useCreateIndex: true,

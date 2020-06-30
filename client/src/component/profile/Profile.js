@@ -15,8 +15,9 @@ const Profile = ({ getProfileById, profile: { profile }, auth, match }) => {
 	}, [getProfileById, match.params.id]);
 
 	return (
+		
 		<Fragment>
-			
+
 			{profile == null ? (
 				<Spinner />
 			) : (

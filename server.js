@@ -12,8 +12,8 @@ app.use(express.json({ extended: false }));
 app.use(express.urlencoded({extended: false}));
 
 // Define Routes
-app.use('/api/profile', require('./routes/profile'));
 app.use('/api/auth', require('./routes/auth'));
+app.use('/api/profile', require('./routes/profile'));
 
 if (process.env.NODE_ENV === 'production') {
 	// Set static folder
