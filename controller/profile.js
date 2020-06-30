@@ -1,8 +1,9 @@
 const Profile = require('../models/Profile');
 const User = require('../models/User');
 const normalize = require('normalize-url');
-const GITHUB_CLIENT_ID = require('config').get('GITHUB_CLIENT_ID');
-const GITHUB_CLIENT_SECRET = require('config').get('GITHUB_CLIENT_SECRET');
+// const GITHUB_CLIENT_ID = require('config').get('GITHUB_CLIENT_ID');
+// const GITHUB_CLIENT_SECRET = require('config').get('GITHUB_CLIENT_SECRET');
+const dotenv=require('dotenv')
 const axios = require('axios');
 const { validationResult } = require('express-validator');
 
@@ -268,7 +269,7 @@ module.exports = {
 	getUserRepos: async (req, res) => {
 		try {
 			const gitHubResponse = await axios.get(
-				`https://api.github.com/users/${req.params.username}/repos?per_page=5&sort=created:asc&client_id=${GITHUB_CLIENT_ID}&client_secret=${GITHUB_CLIENT_SECRET}`
+				`https://api.github.com/users/${req.params.username}/repos?per_page=5&sort=created:asc&client_id=${process.env.GITHUB_CLIENT_ID}&client_secret=${process.env.GITHUB_CLIENT_SECRET}`
 			);
 
 			return res.status(200).json(gitHubResponse.data);

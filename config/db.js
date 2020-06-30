@@ -1,9 +1,9 @@
 const mongoose = require('mongoose');
-const MONGO_DB_URI = require('config').get('MONGO_DB_URI');
-
+// const MONGO_DB_URI = require('config').get('MONGO_DB_URI');
+const dotenv=require('dotenv')
 const connectDB = async () => {
 	try {
-		await mongoose.connect(MONGO_DB_URI, {
+		await mongoose.connect(process.env.MONGO_DB_URI, {
 			useNewUrlParser: true,
 			useCreateIndex: true,
 			useFindAndModify: false,

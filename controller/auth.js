@@ -1,5 +1,6 @@
 const { validationResult } = require('express-validator');
-const JWT_TOKEN = require('config').get('JWT_TOKEN');
+// const JWT_TOKEN = require('config').get('JWT_TOKEN');
+const dotenv=require('dotenv')
 const jwt = require('jsonwebtoken');
 const User = require('../models/User');
 const bcrypt = require('bcrypt');
@@ -49,7 +50,7 @@ module.exports = {
 				},
 			};
 
-			jwt.sign(payload, JWT_TOKEN, (error, token) => {
+			jwt.sign(payload, process.env.JWT_TOKEN, (error, token) => {
 				if (error) throw error;
 				res.status(200).json({ token });
 			});
@@ -103,7 +104,7 @@ module.exports = {
 				},
 			};
 
-			jwt.sign(payload, JWT_TOKEN, (error, token) => {
+			jwt.sign(payload, process.env.JWT_TOKEN, (error, token) => {
 				if (error) throw error;
 				res.status(200).json({ token });
 			});
