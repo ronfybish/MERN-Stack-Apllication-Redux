@@ -1,13 +1,15 @@
 const express = require('express');
 const connectDB = require('./config/db');
+const dotenv=require('dotenv').config()
 const path = require('path');
 const app = express();
 
 // Connect Database
 connectDB();
 
-// Init Middleware
+// Middleware
 app.use(express.json({ extended: false }));
+app.use(express.urlencoded({extended: false}));
 
 // Define Routes
 app.use('/api/profile', require('./routes/profile'));
