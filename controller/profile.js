@@ -3,7 +3,7 @@ const User = require('../models/User');
 const normalize = require('normalize-url');
 // const GITHUB_CLIENT_ID = require('config').get('GITHUB_CLIENT_ID');
 // const GITHUB_CLIENT_SECRET = require('config').get('GITHUB_CLIENT_SECRET');
-const dotenv=require('dotenv')
+const dotenv=require('dotenv').config()
 const axios = require('axios');
 const { validationResult } = require('express-validator');
 
